@@ -16,7 +16,10 @@ AccountRouter.post('/create', function (req, res, err) {
 			res.json('Account added successfully');
 		})
 		.catch(err => {
-			res.status(400).send('unable to save to database');
+			if (err.message === "Account validation failed: email: email already exists") {
+				res.status(400).send("email already exists")
+			}
+			res.status(400).send(err);
 		});
 });
 

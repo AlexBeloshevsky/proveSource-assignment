@@ -13,7 +13,7 @@ const AccountRouter = require('./api/account/create');
 		err => { console.log('Can not connect to the database' + err) }
 	);
 
-app.listen(3000);
+// app.listen(3000);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

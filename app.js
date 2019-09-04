@@ -8,8 +8,9 @@ require('./db');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/account', AccountRouter);
 app.use('/', NotificationRouter);
+app.use('/account', AccountRouter);
+
 
 console.log('app running on port 3000...');
 

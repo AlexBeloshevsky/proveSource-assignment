@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const Notification = new mongoose.Schema({
-  accountId: {type: mongoose.SchemaTypes.ObjectId},
+  accountId: {type: String},
 	name: {type: String},
 	color: {type: String},
 

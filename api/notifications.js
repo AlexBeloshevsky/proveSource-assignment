@@ -2,12 +2,9 @@ const express = require('express');
 const NotificationRouter = express.Router();
 const Notification = require('../models/Notification');
 
-NotificationRouter.post('/notifications', function (req, res, err) {
-	if (err) {
-		console.log(err);
-	};
+NotificationRouter.post('/notifications', function (req, res, next) {
 	const notification = new Notification({
-		// accountId: req.body.accountId,
+		accountId: req.body.accountId,
 		name: req.body.name,
 		color: req.body.color
 	});
@@ -20,5 +17,15 @@ NotificationRouter.post('/notifications', function (req, res, err) {
 			res.status(400).send(err);
 		});
 });
+
+NotificationRouter.get('/notifications', function (req, res, next) {
+	const queryParams = req.query;
+	Notification.find({'accountId': queryParams.accountId}).exec(function(err, notifications) {
+		if (err) {
+			console.log (err);
+		};
+		res.send(notifications);
+	})
+})
 
 module.exports = NotificationRouter;

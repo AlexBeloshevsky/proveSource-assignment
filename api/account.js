@@ -1,12 +1,12 @@
 const express = require('express');
 const AccountRouter = express.Router();
-const Account = require('../../models/account/Account');
+const Account = require('../models/Account');
 
 AccountRouter.post('/create', function (req, res, err) {
 	if (err) {
 		console.log(err);
 	};
-	let account = new Account({
+	const account = new Account({
 		email: req.body.email,
 		name: req.body.name,
 		age: req.body.age

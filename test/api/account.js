@@ -1,8 +1,11 @@
 const request = require('supertest');
-
-const app = require('../../../app');
+const db = require('../../db');
+const app = require('../../app');
 
 describe('POST /account/create', function () {
+  beforeEach(() => {
+    return db.deleteDb();
+  })
   it('responds with json', function (done) {
     request(app)
       .post('/account/create')
@@ -18,6 +21,9 @@ describe('POST /account/create', function () {
 });
 
 describe('POST /account/create', function () {
+  beforeEach(() => {
+    return db.deleteDb();
+  })
   it('fails as expected when no email is provided', function (done) {
     request(app)
       .post('/account/create')
@@ -31,6 +37,9 @@ describe('POST /account/create', function () {
 });
 
 describe('POST /account/create', function () {
+  beforeEach(() => {
+    return db.deleteDb();
+  })
   it('fails as expected when the same email is entered twice', function (done) {
     request(app)
       .post('/account/create')

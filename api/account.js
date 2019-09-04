@@ -2,14 +2,14 @@ const express = require('express');
 const AccountRouter = express.Router();
 const Account = require('../models/Account');
 
-AccountRouter.post('/create', function (req, res, next) {
+AccountRouter.post('/create', function (req, res) {
 	const account = new Account({
 		email: req.body.email,
 		name: req.body.name,
 		age: req.body.age
 	});
 	account.save()
-		.then(account => {
+		.then(() => {
 			res.json('Account added successfully');
 		})
 		.catch(err => {
